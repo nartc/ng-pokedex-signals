@@ -1,5 +1,5 @@
 import { NgFor, NgOptimizedImage, TitleCasePipe } from '@angular/common';
-import { Component, Input } from '@angular/core';
+import { Component, Input, computed, signal } from '@angular/core';
 import { Pokemon } from 'pokenode-ts';
 import { PokemonType } from '../pokemon-type/pokemon-type';
 
@@ -12,4 +12,7 @@ import { PokemonType } from '../pokemon-type/pokemon-type';
 })
 export class PokemonCard {
     @Input({ required: true }) pokemon!: Pokemon;
+
+    protected hovered = signal(false);
+    protected imgScale = computed(() => (this.hovered() ? 'scale-125' : 'scale-100'));
 }
