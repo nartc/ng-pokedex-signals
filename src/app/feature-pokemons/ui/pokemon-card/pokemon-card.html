@@ -1,1 +1,14 @@
-<p>pokemon card</p>
+<article class="card bg-white shadow-xl gap-2 justify-center items-center p-4 relative mt-12 pt-12">
+    <img
+        [ngSrc]="pokemon.sprites.versions['generation-v']['black-white'].animated.front_default!"
+        width="64"
+        height="64"
+        alt="pokemon image"
+        class="absolute top-[-33px]"
+    />
+    <h6 class="font-bold text-gray-400 text-xs">N° {{pokemon.id}}</h6>
+    <h2 class="font-bold">{{pokemon.name | titlecase}}</h2>
+    <ul class="flex gap-2 justify-center items-center">
+        <li *ngFor="let type of pokemon.types" class="uppercase text-sm">{{type.type.name}}</li>
+    </ul>
+</article>

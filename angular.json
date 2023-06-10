@@ -13,7 +13,7 @@
             "prefix": "app",
             "architect": {
                 "build": {
-                    "builder": "@angular-devkit/build-angular:browser-esbuild",
+                    "builder": "@angular-devkit/build-angular:browser",
                     "options": {
                         "outputPath": "dist/ng-pokedex-signals",
                         "index": "src/index.html",
@@ -43,8 +43,10 @@
                         "development": {
                             "buildOptimizer": false,
                             "optimization": false,
+                            "vendorChunk": true,
                             "extractLicenses": false,
-                            "sourceMap": true
+                            "sourceMap": true,
+                            "namedChunks": true
                         }
                     },
                     "defaultConfiguration": "production"

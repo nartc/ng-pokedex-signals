@@ -1,5 +1,8 @@
-<p>Pokemons here</p>
-<app-pokemons-search />
-<app-pokemons-filter />
-<app-pokemons-list />
-<router-outlet />
+<section class="col-span-full lg:col-span-2">
+    <app-pokemons-search />
+    <app-pokemons-filter />
+    <app-pokemons-list [pokemons]="state.pokemons()" />
+</section>
+<aside class="lg:col-span-1">
+    <router-outlet />
+</aside>

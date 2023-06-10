@@ -1,2 +1,1 @@
-<p>pokemons list</p>
-<app-pokemon-card />
+<app-pokemon-card *ngFor="let pokemon of pokemons; trackBy: trackById" [pokemon]="pokemon" />
