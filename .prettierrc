@@ -3,5 +3,6 @@
     "singleQuote": true,
     "tabWidth": 4,
     "printWidth": 120,
-    "htmlWhitespaceSensitivity": "ignore"
+    "htmlWhitespaceSensitivity": "ignore",
+    "plugins": ["prettier-plugin-tailwindcss", "prettier-plugin-organize-imports"]
 }
