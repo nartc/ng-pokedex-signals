@@ -84,6 +84,14 @@ module.exports = {
             fontFamily: {
                 sans: ['Outfit', ...defaultTheme.fontFamily.sans],
             },
+            height: {
+                'pokemons-container': 'calc(100vh - 2rem)',
+                'pokemon-container': 'calc(100vh - 7rem)',
+            },
+            maxHeight: {
+                'pokemons-container': 'calc(100vh - 2rem)',
+                'pokemon-container': 'calc(100vh - 7rem)',
+            },
         },
     },
     plugins: [

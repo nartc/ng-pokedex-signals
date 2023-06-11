@@ -1,8 +1,22 @@
-<section class="col-span-full lg:col-span-2">
-    <app-pokemons-search />
-    <app-pokemons-filter />
+<section class="col-span-full p-4 lg:col-span-5 lg:overflow-y-auto">
+    <app-pokemons-search (search)="state.search($event)" />
+    <!-- <app-pokemons-filter /> -->
     <app-pokemons-list [pokemons]="state.pokemons()" />
 </section>
-<aside class="lg:col-span-1">
+<aside class="mt-20 h-pokemon-container max-h-pokemon-container lg:col-span-2">
     <router-outlet />
+    <div
+        *ngIf="state.selected() === -1"
+        class="relative flex h-full w-full items-center justify-center rounded-t-2xl bg-white shadow-lg"
+    >
+        <div class="absolute -top-20 left-1/2 h-32 w-28 -translate-x-1/2">
+            <img
+                ngSrc="/assets/no-pokemon-selected-image.png"
+                fill
+                priority
+                alt="No pokemon selected placeholder image"
+            />
+        </div>
+        <p class="font-bold text-gray-400">Select a Pokemon to display here</p>
+    </div>
 </aside>

@@ -1,19 +1,27 @@
-import { signal } from '@angular/core';
+import { computed, signal } from '@angular/core';
 import { Pokemon } from 'pokenode-ts';
 import { createInjectionToken } from '../shared-utils/injection-token';
 import { POKEMONS_SERVICE, type PokemonsService } from './pokemons-service';
 
 function pokemonsStateFactory(service: PokemonsService) {
-    const OFFSET_INCREMENT = 20;
+    // NOTE: use number that can be divided by 3 so grid is always filled
+    const OFFSET_INCREMENT = 21;
 
     const pokemons = signal<Pokemon[]>([]);
+    const selected = signal<number>(-1);
     const offset = signal(0);
     const loading = signal(false);
     const total = signal(0);
+    const query = signal('');
 
     return {
         loading: loading.asReadonly(),
-        pokemons: pokemons.asReadonly(),
+        pokemons: computed(() => {
+            if (query())
+                return pokemons().filter((pokemon) => pokemon.name.toLowerCase().includes(query().toLowerCase()));
+            return pokemons();
+        }),
+        selected: selected.asReadonly(),
 
         init() {
             service
@@ -37,6 +45,12 @@ function pokemonsStateFactory(service: PokemonsService) {
                 .finally(() => {
                     loading.set(false);
                 });
+        },
+        select(id: number | null) {
+            selected.set(id ?? -1);
+        },
+        search(value = '') {
+            query.set(value);
         },
     };
 }

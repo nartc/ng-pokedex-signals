@@ -1,3 +1,4 @@
+import { NgIf, NgOptimizedImage } from '@angular/common';
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { injectPokemonsState, providePokemonsState } from '../data-access-pokemons/pokemons-state';
@@ -9,8 +10,8 @@ import { PokemonsSearch } from './ui/pokemons-search/pokemons-search';
     standalone: true,
     templateUrl: './pokemons.html',
     changeDetection: ChangeDetectionStrategy.OnPush,
-    host: { class: 'pokemons grid gap-4 grid-cols-3' },
-    imports: [RouterOutlet, PokemonsSearch, PokemonsFilter, PokemonsList],
+    host: { class: 'pokemons grid grid-cols-7 lg:overflow-hidden h-pokemons-container max-h-pokemons-container' },
+    imports: [RouterOutlet, PokemonsSearch, PokemonsFilter, PokemonsList, NgIf, NgOptimizedImage],
     providers: [providePokemonsState()],
 })
 export default class Pokemons {
