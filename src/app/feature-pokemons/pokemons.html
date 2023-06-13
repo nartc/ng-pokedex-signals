@@ -1,4 +1,4 @@
-<section class="col-span-full p-4 lg:col-span-5 lg:overflow-y-auto">
+<section cdkScrollable class="col-span-full p-4 lg:col-span-5 lg:overflow-y-auto">
     <app-pokemons-search (search)="state.search($event)" />
     <!-- <app-pokemons-filter /> -->
     <app-pokemons-list [pokemons]="state.pokemons()" />

@@ -1,4 +1,4 @@
-import { computed, signal } from '@angular/core';
+import { computed, signal, untracked } from '@angular/core';
 import { Pokemon } from 'pokenode-ts';
 import { createInjectionToken } from '../shared-utils/injection-token';
 import { POKEMONS_SERVICE, type PokemonsService } from './pokemons-service';
@@ -35,9 +35,11 @@ function pokemonsStateFactory(service: PokemonsService) {
         },
         load() {
             loading.set(true);
+            console.log(untracked(offset));
             service
-                .listPokemons(offset())
+                .listPokemons(untracked(offset))
                 .then(({ pokemons: result }) => {
+                    console.log({ result });
                     pokemons.update((prev) => [...prev, ...result]);
                     offset.update((prev) => prev + OFFSET_INCREMENT);
                 })
