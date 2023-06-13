@@ -2724,10 +2724,10 @@ csso@^5.0.5:
   dependencies:
     css-tree "~2.2.0"
 
-daisyui@^3.0.23:
-  version "3.0.23"
-  resolved "https://registry.yarnpkg.com/daisyui/-/daisyui-3.0.23.tgz#c137e2698ba7b2d578af48ca36563442a1294594"
-  integrity sha512-/VbiCeePwbQTLv1bnrw9SY2FH1IFoZGHOJIoB8tDYgsvaFus6rwQpc7hUjdshNpUc+GGo9sqYmNZwFw2kp5M8g==
+daisyui@^3.1.0:
+  version "3.1.0"
+  resolved "https://registry.yarnpkg.com/daisyui/-/daisyui-3.1.0.tgz#e32651e06cfb00bc4b9fada3399b91ca8f6f779b"
+  integrity sha512-G4dz/bRZVvlhQ/FtezXSg0rXOXzDJ0PcnMqeLSwCYNWXxf46fNJ8LWeV5qwsYOdJbXiXoZLnwyy+BsNoWZ+Bjg==
   dependencies:
     colord "^2.9"
     css-selector-tokenizer "^0.8"
@@ -4826,10 +4826,10 @@ pkg-dir@^4.1.0:
   dependencies:
     find-up "^4.0.0"
 
-pokenode-ts@^1.19.0:
-  version "1.19.0"
-  resolved "https://registry.yarnpkg.com/pokenode-ts/-/pokenode-ts-1.19.0.tgz#a63fbe132bab3a8666601f70b26d7f76dc225a4d"
-  integrity sha512-FbBEPu6Vymp1YGAnb8y5ZPSomufsp3uP8cYR9FMerOD+4vmpwT0F4ySHjsOp/Q2BViL70CtpyB511UwcKnOJPg==
+pokenode-ts@^1.19.1:
+  version "1.19.1"
+  resolved "https://registry.yarnpkg.com/pokenode-ts/-/pokenode-ts-1.19.1.tgz#1231c4e14bdb62a0c45d40ad6a3cc4d4781705dc"
+  integrity sha512-LqVlVyRIzx7StpLqYfpEG6WyL35YKl7r/ghBBTV3ZSND+aMlq9ajhazsFGutnaSQHyfh6aQhMjNavrCjE8LJog==
 
 postcss-import@^15.1.0:
   version "15.1.0"
@@ -6228,9 +6228,9 @@ yargs@17.7.2, yargs@^17.2.1:
     y18n "^5.0.5"
     yargs-parser "^21.1.1"
 
-zone.js@~0.13.0:
-  version "0.13.0"
-  resolved "https://registry.yarnpkg.com/zone.js/-/zone.js-0.13.0.tgz#4c735cb8ef49312b58c0ad13451996dc2b202a6d"
-  integrity sha512-7m3hNNyswsdoDobCkYNAy5WiUulkMd3+fWaGT9ij6iq3Zr/IwJo4RMCYPSDjT+r7tnPErmY9sZpKhWQ8S5k6XQ==
+zone.js@~0.13.1:
+  version "0.13.1"
+  resolved "https://registry.yarnpkg.com/zone.js/-/zone.js-0.13.1.tgz#ea06f6a80ba8ac0c68e412365ae72e2cd0787982"
+  integrity sha512-+bIeDAFEBYuXRuU3qGQvzdPap+N1zjM4KkBAiiQuVVCrHrhjDuY6VkUhNa5+U27+9w0q3fbKiMCbpJ0XzMmSWA==
   dependencies:
     tslib "^2.3.0"
