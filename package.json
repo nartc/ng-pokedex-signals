@@ -1,59 +1,59 @@
 {
-  "name": "ng-pokedex-signals",
-  "version": "0.0.0",
-  "scripts": {
-    "start": "ng serve",
-    "build": "ng build",
-    "prestart": "npm run svg",
-    "prebuild": "npm run svg",
-    "svg": "svg-generator"
-  },
-  "private": true,
-  "dependencies": {
-    "@angular/animations": "^16.1.0",
-    "@angular/cdk": "^16.1.0",
-    "@angular/common": "^16.1.0",
-    "@angular/compiler": "^16.1.0",
-    "@angular/core": "^16.1.0",
-    "@angular/forms": "^16.1.0",
-    "@angular/platform-browser": "^16.1.0",
-    "@angular/platform-browser-dynamic": "^16.1.0",
-    "@angular/router": "^16.1.0",
-    "@ngneat/svg-icon": "^7.0.0",
-    "axios": "^1.4.0",
-    "axios-cache-interceptor": "^1.2.0",
-    "pokenode-ts": "^1.19.1",
-    "rxjs": "~7.8.1",
-    "tslib": "^2.5.3",
-    "zone.js": "~0.13.1"
-  },
-  "devDependencies": {
-    "@angular-devkit/build-angular": "^16.1.0",
-    "@angular/cli": "~16.1.0",
-    "@angular/compiler-cli": "^16.1.0",
-    "@ngneat/svg-generator": "^7.0.0",
-    "daisyui": "^3.1.0",
-    "prettier": "^2.8.8",
-    "prettier-plugin-organize-imports": "^3.2.2",
-    "prettier-plugin-tailwindcss": "^0.3.0",
-    "svgo": "^3.0.2",
-    "tailwindcss": "^3.3.2",
-    "typescript": "~5.1.3"
-  },
-  "svgGenerator": {
-    "outputPath": "./src/app/svg",
-    "srcPath": "./src/assets/svg",
-    "svgoConfig": {
-      "plugins": [
-        "removeDimensions",
-        "cleanupAttrs",
-        {
-          "name": "convertColors",
-          "params": {
-            "currentColor": true
-          }
+    "name": "ng-pokedex-signals",
+    "version": "0.0.0",
+    "scripts": {
+        "start": "ng serve",
+        "build": "ng build",
+        "prestart": "npm run svg",
+        "prebuild": "npm run svg",
+        "svg": "svg-generator"
+    },
+    "private": true,
+    "dependencies": {
+        "@angular/animations": "^16.1.1",
+        "@angular/cdk": "^16.1.1",
+        "@angular/common": "^16.1.1",
+        "@angular/compiler": "^16.1.1",
+        "@angular/core": "^16.1.1",
+        "@angular/forms": "^16.1.1",
+        "@angular/platform-browser": "^16.1.1",
+        "@angular/platform-browser-dynamic": "^16.1.1",
+        "@angular/router": "^16.1.1",
+        "@ngneat/svg-icon": "^7.0.0",
+        "axios": "^1.4.0",
+        "axios-cache-interceptor": "^1.2.0",
+        "pokenode-ts": "^1.19.1",
+        "rxjs": "~7.8.1",
+        "tslib": "^2.5.3",
+        "zone.js": "~0.13.1"
+    },
+    "devDependencies": {
+        "@angular-devkit/build-angular": "^16.1.0",
+        "@angular/cli": "~16.1.0",
+        "@angular/compiler-cli": "^16.1.1",
+        "@ngneat/svg-generator": "^7.0.0",
+        "daisyui": "^3.1.1",
+        "prettier": "^2.8.8",
+        "prettier-plugin-organize-imports": "^3.2.2",
+        "prettier-plugin-tailwindcss": "^0.3.0",
+        "svgo": "^3.0.2",
+        "tailwindcss": "^3.3.2",
+        "typescript": "~5.1.3"
+    },
+    "svgGenerator": {
+        "outputPath": "./src/app/svg",
+        "srcPath": "./src/assets/svg",
+        "svgoConfig": {
+            "plugins": [
+                "removeDimensions",
+                "cleanupAttrs",
+                {
+                    "name": "convertColors",
+                    "params": {
+                        "currentColor": true
+                    }
+                }
+            ]
         }
-      ]
     }
-  }
 }

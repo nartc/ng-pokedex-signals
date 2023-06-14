@@ -104,6 +104,12 @@ export function createInjectionToken<
     opts.isRoot ??= true;
 
     if (opts.isRoot) {
+        if (opts.token) {
+            throw new Error(`\
+createInjectionToken is creating a root InjectionToken but an external token is passed in.
+`);
+        }
+
         const token = new InjectionToken<TFactoryReturn>(`Token for ${factory.name}`, {
             factory: () => {
                 if (opts.deps && Array.isArray(opts.deps)) {

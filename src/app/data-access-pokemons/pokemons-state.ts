@@ -1,9 +1,10 @@
-import { computed, signal, untracked } from '@angular/core';
+import { Injector, NgZone, computed, effect, signal, untracked } from '@angular/core';
 import { Pokemon } from 'pokenode-ts';
+import { Observable } from 'rxjs';
 import { createInjectionToken } from '../shared-utils/injection-token';
 import { POKEMONS_SERVICE, type PokemonsService } from './pokemons-service';
 
-function pokemonsStateFactory(service: PokemonsService) {
+function pokemonsStateFactory(service: PokemonsService, injector: Injector, zone: NgZone) {
     // NOTE: use number that can be divided by 3 so grid is always filled
     const OFFSET_INCREMENT = 21;
 
@@ -23,7 +24,8 @@ function pokemonsStateFactory(service: PokemonsService) {
         }),
         selected: selected.asReadonly(),
 
-        init() {
+        init(loadMore$: Observable<number>) {
+            loading.set(true);
             service
                 .listPokemons()
                 .then(({ count, pokemons: result }) => {
@@ -31,15 +33,28 @@ function pokemonsStateFactory(service: PokemonsService) {
                     total.set(count);
                     offset.set(OFFSET_INCREMENT);
                 })
-                .catch(console.error);
+                .catch(console.error)
+                .finally(() => {
+                    loading.set(false);
+                });
+
+            effect(
+                (onCleanup) => {
+                    const loadMoreSubscription = loadMore$.subscribe(() => {
+                        zone.run(() => {
+                            this.load();
+                        });
+                    });
+                    onCleanup(loadMoreSubscription.unsubscribe.bind(loadMoreSubscription));
+                },
+                { injector }
+            );
         },
         load() {
             loading.set(true);
-            console.log(untracked(offset));
             service
                 .listPokemons(untracked(offset))
                 .then(({ pokemons: result }) => {
-                    console.log({ result });
                     pokemons.update((prev) => [...prev, ...result]);
                     offset.update((prev) => prev + OFFSET_INCREMENT);
                 })
@@ -59,5 +74,5 @@ function pokemonsStateFactory(service: PokemonsService) {
 
 export const [injectPokemonsState, providePokemonsState] = createInjectionToken(pokemonsStateFactory, {
     isRoot: false,
-    deps: [POKEMONS_SERVICE],
+    deps: [POKEMONS_SERVICE, Injector, NgZone],
 });

@@ -1,7 +1,8 @@
 import { CdkScrollable, ScrollingModule } from '@angular/cdk/scrolling';
 import { NgIf, NgOptimizedImage } from '@angular/common';
-import { ChangeDetectionStrategy, Component, Injector, NgZone, ViewChild, effect, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, ViewChild } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
+import { SvgIconComponent } from '@ngneat/svg-icon';
 import { debounceTime, filter, map, pairwise, startWith } from 'rxjs';
 import { injectPokemonsState, providePokemonsState } from '../data-access-pokemons/pokemons-state';
 import { PokemonsFilter } from './ui/pokemons-filter/pokemons-filter';
@@ -13,13 +14,19 @@ import { PokemonsSearch } from './ui/pokemons-search/pokemons-search';
     templateUrl: './pokemons.html',
     changeDetection: ChangeDetectionStrategy.OnPush,
     host: { class: 'pokemons grid grid-cols-7 lg:overflow-hidden h-pokemons-container max-h-pokemons-container' },
-    imports: [RouterOutlet, PokemonsSearch, PokemonsFilter, PokemonsList, NgIf, NgOptimizedImage, ScrollingModule],
+    imports: [
+        RouterOutlet,
+        PokemonsSearch,
+        PokemonsFilter,
+        PokemonsList,
+        NgIf,
+        NgOptimizedImage,
+        ScrollingModule,
+        SvgIconComponent,
+    ],
     providers: [providePokemonsState()],
 })
 export default class Pokemons {
-    private injector = inject(Injector);
-    private zone = inject(NgZone);
-
     protected state = injectPokemonsState();
 
     @ViewChild(CdkScrollable, { static: true })
@@ -40,18 +47,6 @@ export default class Pokemons {
     }
 
     ngOnInit() {
-        this.state.init();
-
-        effect(
-            (onCleanup) => {
-                const sub = this.loadMore$.subscribe(() => {
-                    this.zone.run(() => {
-                        this.state.load();
-                    });
-                });
-                onCleanup(sub.unsubscribe.bind(sub));
-            },
-            { injector: this.injector }
-        );
+        this.state.init(this.loadMore$);
     }
 }

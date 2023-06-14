@@ -14,6 +14,5 @@ import { PokemonCard } from '../pokemon-card/pokemon-card';
 })
 export class PokemonsList {
     @Input({ required: true }) pokemons: Pokemon[] = [];
-
     protected trackById: TrackByFunction<Pokemon> = (_, item) => item.id;
 }

@@ -2,12 +2,16 @@
     <app-pokemons-search (search)="state.search($event)" />
     <!-- <app-pokemons-filter /> -->
     <app-pokemons-list [pokemons]="state.pokemons()" />
+    <!-- NOTE: rudimentary loading spinner. this can be made better 😅 -->
+    <div *ngIf="state.loading()" class="block w-full text-center">
+        <svg-icon key="pokeball" fontSize="4rem" color="gray" class="animate-spin" />
+    </div>
 </section>
 <aside class="mt-20 h-pokemon-container max-h-pokemon-container lg:col-span-2">
     <router-outlet />
     <div
         *ngIf="state.selected() === -1"
-        class="relative flex h-full w-full items-center justify-center rounded-t-2xl bg-white shadow-lg"
+        class="relative flex h-full w-full flex-col items-center justify-center rounded-t-2xl bg-white shadow-lg"
     >
         <div class="absolute -top-20 left-1/2 h-32 w-28 -translate-x-1/2">
             <img
