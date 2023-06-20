@@ -8,6 +8,7 @@ function pokemonsStateFactory(service: PokemonsService, injector: Injector, zone
     // NOTE: use number that can be divided by 3 so grid is always filled
     const OFFSET_INCREMENT = 21;
 
+    // TODO: maybe use entity for better look up
     const pokemons = signal<Pokemon[]>([]);
     const selected = signal<number>(-1);
     const offset = signal(0);
@@ -22,7 +23,13 @@ function pokemonsStateFactory(service: PokemonsService, injector: Injector, zone
                 return pokemons().filter((pokemon) => pokemon.name.toLowerCase().includes(query().toLowerCase()));
             return pokemons();
         }),
-        selected: selected.asReadonly(),
+        selected: computed(() => {
+            const selectedId = selected();
+            if (selectedId === -1) return null;
+            const pokemon = pokemons().find((pokemon) => pokemon.id === selectedId);
+            if (!pokemon) return null;
+            return pokemon;
+        }),
 
         init(loadMore$: Observable<number>) {
             loading.set(true);
@@ -41,9 +48,7 @@ function pokemonsStateFactory(service: PokemonsService, injector: Injector, zone
             effect(
                 (onCleanup) => {
                     const loadMoreSubscription = loadMore$.subscribe(() => {
-                        zone.run(() => {
-                            this.load();
-                        });
+                        zone.run(this.load.bind(this));
                     });
                     onCleanup(loadMoreSubscription.unsubscribe.bind(loadMoreSubscription));
                 },

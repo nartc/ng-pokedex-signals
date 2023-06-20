@@ -1,19 +1,21 @@
-<article
-    class="group card relative mt-12 items-center justify-center gap-2 border-2 border-white bg-white p-4 pt-12 shadow-xl hover:cursor-pointer hover:border-gray-300"
->
-    <div class="absolute top-[-33px] h-16 w-16">
-        <img
-            [ngSrc]="pokemon.sprites.versions['generation-v']['black-white'].animated.front_default!"
-            fill
-            alt="pokemon image"
-            class="scale-100 transition-transform group-hover:scale-110"
-        />
-    </div>
-    <p class="text-xs font-bold text-gray-400">N° {{pokemon.id}}</p>
-    <h2 class="font-bold">{{pokemon.name | titlecase}}</h2>
-    <ul class="flex items-center justify-center gap-2">
-        <li *ngFor="let type of pokemon.types" class="text-xs uppercase">
-            <app-pokemon-type [type]="type.type.name" />
-        </li>
-    </ul>
-</article>
+<a [routerLink]="[pokemon.id]">
+    <article
+        class="group card relative mt-12 items-center justify-center gap-2 border-2 border-white bg-white p-4 pt-12 shadow-xl hover:cursor-pointer hover:border-gray-300"
+    >
+        <div class="absolute top-[-33px] h-16 w-16">
+            <img
+                [ngSrc]="pokemon.sprites.versions['generation-v']['black-white'].animated.front_default!"
+                fill
+                alt="pokemon image"
+                class="scale-100 transition-transform group-hover:scale-110"
+            />
+        </div>
+        <p class="text-xs font-bold text-gray-400">N° {{pokemon.id}}</p>
+        <h2 class="font-bold">{{pokemon.name | titlecase}}</h2>
+        <ul class="flex items-center justify-center gap-2">
+            <li *ngFor="let type of pokemon.types" class="text-xs uppercase">
+                <app-pokemon-type [type]="type.type.name" />
+            </li>
+        </ul>
+    </article>
+</a>
